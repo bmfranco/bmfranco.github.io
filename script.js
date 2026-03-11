@@ -1,16 +1,17 @@
-const cards = document.querySelectorAll(".card");
+const elements = document.querySelectorAll(".fade");
 
-window.addEventListener("scroll", () => {
+const observer = new IntersectionObserver(entries => {
 
-cards.forEach(card => {
+entries.forEach(entry => {
 
-const top = card.getBoundingClientRect().top;
+if(entry.isIntersecting){
 
-if(top < window.innerHeight - 50){
-card.style.transform = "translateY(0)";
-card.style.opacity = "1";
+entry.target.classList.add("show");
+
 }
 
 });
 
 });
+
+elements.forEach(el => observer.observe(el));
